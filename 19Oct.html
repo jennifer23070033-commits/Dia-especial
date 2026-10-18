@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>¡Feliz Cumpleaños, Jael!</title>
+
+    <!-- Fuentes Google Fonts: Quicksand (Títulos) y Outfit (Texto limpio) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* =====================================================
+           FONDO UNIVERSO PROFUNDO ANIMADO
+        ===================================================== */
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #02040a;
+            background-image:
+                    radial-gradient(circle at 20% 30%, rgba(30, 58, 138, 0.45) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, rgba(14, 116, 144, 0.35) 0%, transparent 45%),
+                    radial-gradient(circle at 50% 10%, rgba(88, 28, 135, 0.3) 0%, transparent 50%),
+                    linear-gradient(180deg, #020617 0%, #050b18 50%, #02040a 100%);
+            background-size: 150% 150%;
+            animation: respirarUniverso 20s ease-in-out infinite alternate;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes respirarUniverso {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Contenedor espacial y capas de universo */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            user-select: none;
+            will-change: transform, opacity;
+        }
+
+        /* Animación para capas de estrellas */
+        .layer-back {
+            animation: viajarEspacio 25s linear infinite;
+            box-shadow: 0 0 4px #60a5fa;
+        }
+
+        .layer-mid {
+            animation: viajarEspacio 16s linear infinite;
+            box-shadow: 0 0 6px #38bdf8;
+        }
+
+        .layer-front {
+            animation: viajarEspacio 9s linear infinite;
+            box-shadow: 0 0 8px #ffffff, 0 0 12px #bae6fd;
+        }
+
+        @keyframes viajarEspacio {
+            0% {
+                transform: translateY(0) scale(0.6);
+                opacity: 0.15;
+            }
+            50% {
+                opacity: 0.9;
+                transform: translateY(-50vh) scale(1.2);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.6);
+                opacity: 0.15;
+            }
+        }
+
+        /* Estrellas fugaces */
+        .shooting-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(-45deg, #ffffff, rgba(56, 189, 248, 1), transparent);
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.9));
+            animation: tail 2.5s ease-in-out infinite, shooting 2.5s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes tail {
+            0% { width: 0; }
+            30% { width: 100px; }
+            100% { width: 0; }
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(450px) translateY(450px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* =====================================================
+           TARJETAS Y PANTALLAS
+        ===================================================== */
+        .card,
+        .screen {
+            background: linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.96),
+                    rgba(241, 245, 249, 0.94)
+            );
+            backdrop-filter: blur(16px);
+            border-radius: 28px;
+            padding: 35px 25px;
+            width: 92%;
+            max-width: 640px;
+            text-align: center;
+            box-shadow:
+                    0 20px 50px rgba(0, 0, 0, 0.6),
+                    0 0 35px rgba(56, 189, 248, 0.25);
+            position: relative;
+            z-index: 2;
+            border: 2px solid rgba(56, 189, 248, 0.6);
+            margin: auto;
+            will-change: transform, opacity;
+        }
+
+        .oculto {
+            display: none !important;
+            opacity: 0;
+        }
+
+        /* =====================================================
+           TIPOGRAFÍA
+        ===================================================== */
+        h1, h2, h3, .carta-header {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+        }
+
+        h1 {
+            color: #0f2a5f;
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+            animation: latido 2s infinite ease-in-out;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .nombre {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.5rem;
+            color: #075985;
+            font-weight: 700;
+            margin: 5px 0 12px;
+            word-wrap: break-word;
+        }
+
+        p {
+            color: #475569;
+            font-size: 1.05rem;
+            margin: 5px 0 22px;
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           BOTONES AZULES ELEGANTES CON SVG
+        ===================================================== */
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            padding: 13px 22px;
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #e0f2fe;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #020617, #1e3a8a);
+            box-shadow: 0 5px 18px rgba(30, 64, 175, 0.35);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #082f49, #164e63);
+            box-shadow: 0 5px 18px rgba(14, 116, 144, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #0f172a, #1e40af);
+            box-shadow: 0 5px 18px rgba(30, 64, 175, 0.35);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #07111f, #075985);
+            box-shadow: 0 5px 18px rgba(7, 89, 133, 0.35);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #020617, #164e63);
+            box-shadow: 0 5px 18px rgba(8, 145, 178, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(125, 211, 252, 0.8);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.25), 0 0 12px rgba(56, 189, 248, 0.15);
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+        }
+
+        .icono-boton {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            fill: none;
+            stroke: #bae6fd;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.25s ease, stroke 0.25s ease, filter 0.25s ease;
+        }
+
+        .btn:hover .icono-boton {
+            stroke: #ffffff;
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 5px rgba(125, 211, 252, 0.8));
+        }
+
+        /* =====================================================
+           CARTAS Y CONTENIDOS
+        ===================================================== */
+        .screen-carta {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 2px solid #38bdf8;
+            text-align: left;
+        }
+
+        .carta-header {
+            text-align: center;
+            font-size: 1.6rem;
+            color: #0f2a5f;
+            margin-bottom: 18px;
+        }
+
+        .carta-img-container {
+            text-align: center;
+            margin: 15px 0 20px;
+            width: 100%;
+        }
+
+        .carta-img {
+            width: auto;
+            max-width: 240px;
+            max-height: 250px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(14, 116, 144, 0.25);
+            border: 4px solid #e0f2fe;
+            object-fit: contain;
+        }
+
+        .carta-body {
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #334155;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 20px;
+            border-radius: 18px;
+            border-left: 6px solid #2563eb;
+            margin-bottom: 15px;
+        }
+
+        /* GALERÍA DE VIDEOS */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 18px 0 22px;
+        }
+
+        .video-card {
+            background: linear-gradient(145deg, #e0f2fe, #dbeafe);
+            border-radius: 18px;
+            padding: 8px;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.15), 0 2px 6px rgba(0,0,0,0.05);
+            border: 2px solid #0ea5e9;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(14, 165, 233, 0.25);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 12px;
+            background: #020617;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* RAZONES PARA CELEBRAR */
+        .box-razones {
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 20px;
+            padding: 22px 18px;
+            text-align: center;
+            font-size: 1.05rem;
+            color: #0f2a5f;
+            font-weight: 600;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 18px 0;
+            box-shadow: 0 6px 18px rgba(14, 165, 233, 0.12);
+            line-height: 1.5;
+        }
+
+        .btn-razon-custom {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #0369a1);
+            color: #e0f2fe;
+            font-size: 1rem;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            width: 100%;
+            box-shadow: 0 6px 18px rgba(3, 105, 161, 0.3);
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-razon-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(3, 105, 161, 0.4);
+        }
+
+        .btn-volver {
+            display: block;
+            margin: 18px auto 0;
+            background: linear-gradient(135deg, #020617, #1e3a8a);
+            padding: 12px 32px;
+        }
+
+        /* SPOTIFY */
+        .screen-spotify {
+            background: linear-gradient(145deg, #020617, #0f172a);
+            border: 1px solid #1e293b;
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        .sp-open-btn {
+            font-family: 'Quicksand', sans-serif;
+            background: #1db954;
+            color: #000;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px 0 5px;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .sp-open-btn:hover {
+            transform: scale(1.05);
+            background: #1ed760;
+        }
+
+        .sp-quote-box {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+            border-left: 3px solid #38bdf8;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .sp-btn-volver {
+            background: #0f172a;
+            color: #ffffff;
+            border: 1px solid #334155;
+            margin-top: 15px;
+        }
+
+        .sp-btn-volver:hover {
+            background: #1e293b;
+        }
+
+        /* MODAL PIN */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.78);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-box {
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+            border: 2px solid #2563eb;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            will-change: transform, opacity;
+        }
+
+        .modal-box input {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            text-align: center;
+            padding: 10px;
+            width: 200px;
+            margin: 15px 0 5px;
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .pin-error {
+            color: #dc2626;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        footer {
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* ADAPTACIÓN MÓVIL */
+        @media (max-width: 600px) {
+            .card, .screen {
+                padding: 25px 16px;
+                border-radius: 22px;
+            }
+            h1 { font-size: 1.8rem; }
+            .nombre { font-size: 1.25rem; }
+            p { font-size: 0.95rem; }
+
+            .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+            .carta-header { font-size: 1.35rem; }
+            .carta-img { max-height: 210px; }
+            .carta-body { font-size: 0.95rem; padding: 14px; }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- UNIVERSO ANIMADO DE FONDO -->
+<div class="stars-container" id="starsContainer"></div>
+
+<!-- PANTALLA PRINCIPAL -->
+<div class="card" id="pantallaPrincipal">
+    <h1>🎨 ¡Feliz Cumpleaños! 🎨</h1>
+    <div class="nombre">💙 JAEL 💙</div>
+    <p>¡Hoy es tu día, explora cada sorpresita!</p>
+
+    <div class="buttons">
+        <!-- MENSAJE ESPECIAL -->
+        <button class="btn btn-primary btn-icon" onclick="cambiarPantalla('pantallaCarta1')">
+            <svg class="icono-boton" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16v14H4z"></path>
+                <path d="m4 6 8 6 8-6"></path>
+            </svg>
+            <span>Mensaje especial</span>
+        </button>
+
+        <!-- TU AMISTAD -->
+        <button class="btn btn-secondary btn-icon" onclick="cambiarPantalla('pantallaCarta2')">
+            <svg class="icono-boton" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.5 1.2 5.5 3.2C14 6.2 15.5 5 17.5 5 21 5 23.5 8.5 21.5 12.5 19 16.65 12 21 12 21z"></path>
+            </svg>
+            <span>Tu amistad en mi vida</span>
+        </button>
+
+        <!-- SECRETO CON PIN -->
+        <button class="btn btn-success btn-icon" onclick="abrirModalPin()">
+            <svg class="icono-boton" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                <circle cx="12" cy="15.5" r="1"></circle>
+            </svg>
+            <span>Secreto con PIN</span>
+        </button>
+
+        <!-- RAZONES -->
+        <button class="btn btn-warning btn-icon" onclick="cambiarPantalla('pantallaRazones')">
+            <svg class="icono-boton" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v18"></path>
+                <path d="M3 12h18"></path>
+                <path d="m5 5 14 14"></path>
+                <path d="m19 5-14 14"></path>
+                <circle cx="12" cy="12" r="8"></circle>
+            </svg>
+            <span>Razones para celebrar</span>
+        </button>
+
+        <!-- CANCIÓN -->
+        <button class="btn btn-info btn-icon" onclick="cambiarPantalla('pantallaCancion')">
+            <svg class="icono-boton" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 18V5l11-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="17" cy="16" r="3"></circle>
+            </svg>
+            <span>Canción para ti</span>
+        </button>
+    </div>
+
+    <footer>Espero te guste, mi Guapa 🐒🎨💙</footer>
+</div>
+
+<!-- OPCIÓN 1: Mensaje Especial -->
+<div class="screen screen-carta oculto" id="pantallaCarta1">
+    <div class="carta-header">💌 FELIZ CUMPLE 💌</div>
+    <div class="carta-img-container">
+        <img src="https://i.pinimg.com/1200x/d0/f0/8d/d0f08d62e0937c6ad6a92e825ae5993c.jpg" alt="Foto especial" class="carta-img">
+    </div>
+    <div class="carta-body">
+        HOLIII, JAEL..<br><br>
+        Feliz cumpleaños a mi muchachita preciosa, linda, guapa, bella, inteligente, tierna, encantadora, graciosa, valiente, talentosa, coqueta, carismática, solecito de quienes te tenemos en nuestras vidas, mujer auténtica, generosa, trabajadora, capaz de lograr todo lo que se propone,
+        la alegría de todos mis días porque siempre me saca una sonrisa, la bendición más hermosa que Dios nos ha dado a nosotros que te adoramos.
+        Espero que en este nuevo añito que estás cumpliendo nunca te falten momentos lindos y sonrisas al lado de tus personas favoritas, espero que todos tus sueños se cumplan y que Dios te proteja en cada paso que des en la vida,
+        que te siga dando sabiduría, salud y muchos motivos para sonreír muchísimo. Te quiero con todo mi corazón✨
+    </div>
+    <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
+</div>
+
+<!-- OPCIÓN 2: Tu Amistad en mi vida -->
+<div class="screen screen-carta oculto" id="pantallaCarta2">
+    <div class="carta-header">🌟 Lo que trajo tu amistad 🌟</div>
+    <div class="carta-img-container">
+        <img src="https://i.pinimg.com/1200x/4f/fe/10/4ffe10edf5f44e753a757d4db398b4b3.jpg" alt="Nuestra Amistad" class="carta-img">
+    </div>
+    <div class="carta-body">
+        Tenerte en mi vida ha sido una de esas coincidencias bonitas que uno no sabe cuánto necesitaba hasta que suceden.
+        Tu amistad me ha regalado momentos que siempre voy a guardar, risas que hicieron más ligeros los días difíciles y conversaciones que significaron mucho más de lo que imaginas.
+        Gracias por escucharme, por estar presente incluso en los días no tan buenos y por hacerme sentir que no tengo que enfrentar todo por mi cuenta.
+        Me alegra muchísimo haberte conocido y poder compartir contigo por primera vez esta parte de tu vida, pequeñita de 20 añitos.
+        Ojalá nuestra amistad siga llenándose de recuerdos, de momentos tontos JAJAJ, muchas risas y momentos que algún día podamos recordar con una sonrisa. Gracias por ser tú y por formar parte de mi vida. 💙✨
+    </div>
+    <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
+</div>
+
+<!-- OPCIÓN 3: Secreto con PIN -->
+<div class="screen screen-carta oculto" id="pantallaSecreta">
+    <div class="carta-header">🔓 ¡Lograste descifrar el código! 🤫 🔓</div>
+    <div class="carta-img-container">
+        <img src="https://i.pinimg.com/1200x/16/f9/20/16f92055232c4398f766d4742e285f24.jpg" alt="Sorpresa" class="carta-img">
+    </div>
+    <div class="carta-body">
+        "Fue el tiempo que pasaste con tu rosa lo que la hizo tan importante"<br><br>
+        Cada segundo a tu lado, cada risa y cada conversación han hecho que te vuelvas la persona más especial y valiosa de mi universo.
+
+        Cada instante a tu lado, cada risa compartida y cada charla han hecho que te conviertas en la persona más valiosa de mi vida.
+
+        Deseo de todo corazón que este nuevo año esté repleto de momentos mágicos juntas, de lienzos en blanco listos para pintar el futuro que soñamos y de razones de sobra para hacerte sonreír. Gracias por abrazar mi alma, por ser mi lugar seguro, eres lo más lindo que me ha pasado,
+        mi muchachita bonita. 🌹
+    </div>
+    <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
+</div>
+
+<!-- OPCIÓN 4: RAZONES PARA CELEBRAR -->
+<div class="screen screen-carta oculto" id="pantallaRazones">
+    <div class="carta-header">Razones y videos que me hicieron recordarte️❤️</div>
+
+    <div class="video-grid">
+
+        <!-- Video 1 -->
+        <div class="video-card">
+            <div class="video-titulo">🎬 Minuto:  <strong >1:48 </strong ></div>
+            <div class="video-container">
+                <iframe
+                        src="https://www.youtube-nocookie.com/embed/nhREMUcFLIQ"
+                        title="Video 1"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card">
+            <div class="video-titulo">🎬 Minuto:  <strong >1:54 </strong ></div>
+            <div class="video-container">
+                <iframe
+                        src="https://www.youtube-nocookie.com/embed/Lywi5uUfCZ8"
+                        title="Video 2"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-card">
+            <div class="video-titulo">🎬 Minuto:  <strong >0:42</strong ></div>
+            <div class="video-container">
+                <iframe
+                        src="https://www.youtube-nocookie.com/embed/dVbA2tA4ViE"
+                        title="Video 3"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="video-card">
+            <div class="video-titulo">🎬 Minuto:  <strong >compleetooo ajajaja </strong ></div>
+            <div class="video-container">
+                <iframe
+                        src="https://www.youtube-nocookie.com/embed/MXXiyfwANCs"
+                        title="Video 4"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Caja interactiva para las razones -->
+    <div class="box-razones" id="textoRazon">
+        ¡Haz clic abajo para descubrir otras razones para celebrar tu diita! 🎨💙
+    </div>
+
+    <button class="btn-razon-custom" onclick="siguienteRazon()">
+         Ver otra razón 💫
+    </button>
+
+    <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
+</div>
+
+<!-- OPCIÓN 5: CANCIÓN DESDE SPOTIFY -->
+<div class="screen screen-spotify oculto" id="pantallaCancion">
+    <h2 style="color:#1db954; margin-top:0; font-size:1.4rem;">🎶 Canción Especial para ti 🎶</h2>
+
+    <iframe style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/3GSMdtJphymHEsR8K9jT5Q?utm_source=generator&theme=0"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+    </iframe>
+
+    <a href="https://open.spotify.com/intl-es/track/1qwClaxDb5fCrLjXaAmB35" target="_blank" class="sp-open-btn">
+        🎧 Una extra, abrela aquí solo si quieres escucharla
+    </a>
+
+    <div class="sp-quote-box">
+        💬 <i>A ver si te acuerdas de la canción principal..."</i><br><br>
+        Recuerdo que un día nos estábamos dedicando canciones (en uno de nuestros momentos más random 😂) y te dije que buscaras esta en especial.
+        Hoy quiero dedicártela de manera formal: quédate con cada palabra que quieras escuchar y que abrace tu corazoncito. ¿De acuerdo? 🤍🎵
+    </div>
+
+    <button class="btn sp-btn-volver btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar </button>
+</div>
+
+<!-- MODAL DE PIN -->
+<div class="modal-overlay oculto" id="modalPin">
+    <div class="modal-box" id="modalBoxContent">
+        <h3 style="color: #0f2a5f; margin-top:0;">🔒 Ingresa el PIN Secreto</h3>
+        <p style="font-size:0.85rem; color:#64748b;">Pista: Año o fecha especial</p>
+        <input type="password" id="pinInput" maxlength="8" placeholder="••••" onkeyup="if(event.key === 'Enter') validarPin()">
+        <div class="pin-error" id="pinError">¡PIN Incorrecto! Inténtalo de nuevo.</div>
+        <div style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
+            <button class="btn btn-primary" onclick="validarPin()" style="padding:10px 20px;">Desbloquear</button>
+            <button class="btn btn-secondary" onclick="cerrarModalPin()" style="padding:10px 20px;">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Configuración del PIN a 1910 y fechas compatibles
+    const PIN_VALIDO_1 = "1910";
+    const PIN_VALIDO_2 = "07042026";
+    const PIN_VALIDO_3 = "0704";
+
+    const razones = [
+        "Por la forma tan bonita e irrepetible en la que sonríes e iluminas todo a tu alrededor ✨💙",
+        "Porque tienes una magia única que hace que cualquier momento a tu lado sea el mejor del día 🎨💙",
+        "Por lo linda, inteligente y auténtica que eres... sinceramente, es imposible no admirarte 🌹✨",
+        "Porque hablar contigo es mi lugar favorito y donde más en paz me siento 🧸💙",
+        "Por la magia con la que transformas un lienzo en blanco en una obra llena de alma 🎨🖌️✨",
+        "Porque coincidir contigo en esta vida es de las mejores cosas que me han pasado 🪐💙",
+        "Por lo hermosa que te ves con manchitas de pintura mientras creas algo maravilloso 🎨💓",
+        "Por todas las veces que dijiste que no podías... y demostraste lo fuerte y maravillosa que eres 🌻💙",
+        "Porque ser simplemente tú, con tu chispa, curiosidad e ideas, me parece algo perfecto en ti ✨",
+        "Por la sensibilidad tan única que tienes para ver colores y belleza donde nadie más los nota 🌈🎨",
+        "Por la forma tan linda en la que cuidas y valoras a la gente que quieres 💙🧸",
+        "Por lo talentosa y apasionada que eres en todo lo que pintas y sueñas hacer 🎨✨",
+        "Por ser ese solecito constante que le saca una sonrisa a mi día, sin importar qué pase ☀️💙",
+        "Por las risas compartidas, las complicidades y todos los momentos lindos que me has regalado 😉🎨",
+        "Porque si fueras una pintura, serías de esas obras frente a las que me quedaría mirando un ratito más, descubriendo nuevos detalles cada vez 🎨🖼️✨",
+        "Porque detrás de cada logro tuyo hay esfuerzo, detrás de cada sueño hay mucho trabajo y dedicación, lo vas a lograr mi bonita, sea cual sea tu sueño 🌻💙",
+        "Porque tienes una belleza que no se queda solamente en lo que se ve, sino que también vive en todo lo bonito que haces sentir 🌷🦋",
+        "Porque entre tantos colores que existen en este mundo, tú tienes una combinación de luz y magia que no podría reproducirse en ningún otro lienzo 🖌️💙✨",
+        "Porque si pudiera guardar un instante en un frasquito para volver a él cuando quisiera, elegiría uno de esos momentos en los que estoy contigo sin ninguna preocupación 🌷🫙💙",
+        "Porque hay personas que parecen hechas de pequeños detalles bonitos, y tú eres una de esas mujeres que merecen ser descubiertas despacito, sin prisas y con mucho cariño 🦋🌸✨",
+        "Porque si alguien me pidiera explicar cómo se ve la magia sin utilizar esa palabra, probablemente terminaría hablando de ti y de todas esas pequeñas cosas que te hacen tan especial 💙",
+        "Porque me parece maravilloso que, entre millones de personas, exista alguien capaz de ver el mundo con tus ojos y convertir lo que siente en algo tan bonito como el arte 🎨🪐",
+        "Porque cada vez que conozco un poquito más de ti, descubro nuevas razones para admirar la mujer que eres 🌷💗",
+        "Porque mereces que la vida te sorprenda con cosas tan bonitas como las que tú, sin darte cuenta, le regalas a los demás🌻🎁✨",
+        "Porque ojalá pudieras verte alguna vez a través de mis ojos y descubrir todas esas cosas bonitas que quizá tú todavía no alcanzas a reconocer en ti 🪞🌸✨",
+        "Porque no necesitas tener todos los días resueltos ni saber exactamente hacia dónde vas para seguir siendo una mujer digna de admiración y de cosas bonitas 🌦️🌻💙",
+        "Porque me parece precioso que puedas transformar tus sentimientos en colores, tus pensamientos en dibujos y tus sueños en algo que otras personas también pueden admirar 🎨💭💗",
+        "Porque si los recuerdos tuvieran forma, muchos de los momentos bonitos que compartimos tendrían la silueta de una sonrisa tuya y estarían pintados con tus colores favoritos 🖼️🦋💙",
+        "Porque deseo que nunca pierdas esa curiosidad que te hace descubrir cosas nuevas, hacer preguntas inesperadas y encontrar motivos para seguir aqui 🌎🔎✨",
+        "Porque no todas las obras maestras cuelgan de las paredes; algunas caminan por ahí, dicen mensadas JAJAJA, se manchan las manos de pintura y ni siquiera saben lo especiales que son(es Jael) 🎨🖼️💗",
+        "Porque tienes derecho a equivocarte, a cambiar de opinión, a descansar y a volver a empezar, sin que ninguna de esas cosas le quite valor a la persona maravillosa que eres 🌱🧸💙",
+        "Porque si pudiera regalarte algo que no se pudiera envolver, te regalaría la oportunidad de verte con un poquito más de cariño y reconocer todas las razones por las que mereces sentirte orgullosa de ti misma 🎁🌷✨",
+        "Porque si la vida fuera un libro, tú serías ese personaje que aparece en una página inesperada y termina convirtiéndose en una de mis partes favoritas de toda la historia 📖🎨💙",
+        "Porque espero que algún día puedas cumplir esos sueños que todavía guardas en silencio y mirar hacia atrás con una sonrisa al descubrir todo lo que fuiste capaz de construir 🌠🌻💙",
+        "Porque dentro de ti existen tantas versiones hermosas: la mujer que sueña, la que crea, la que aprende, la que se equivoca y la que encuentra fuerzas para continuar 🦋💙🌻",
+        "Porque si pudiera convertir todos los buenos deseos que tengo para ti en pequeñas estrellas, te regalaría un cielo entero para que nunca te faltaran razones para mirar hacia arriba y seguir⭐",
+        "Porque el mundo está lleno de cosas que brillan, pero pocas tienen la capacidad de hacer que me detenga, observe con atención y descubra algo nuevo cada vez que vuelvo a mirarlas; tú eres una de esas maravillas 🌠🖼️💙",
+        "Porque si algún día llegas a olvidar lo lejos que has llegado, ojalá encuentres en tus propios recuerdos las pruebas de todo lo que has aprendido, superado y creado🎨✨",
+        "Porque entre todas las casualidades que pudieron ocurrir en este mundo tan enorme, me parece una de las más bonitas haber tenido la oportunidad de conocerte a pesar de que hay miles de Km separandonos🌷",
+        "Porque no necesitas ser perfecta, extraordinaria todos los días ni convertirte en alguien diferente; ser tú, con tus colores, tus sueños y tu manera de mirar el mundo, ya es una razón preciosa para celebrar tu existencia 🎨💙🦋"
+    ];
+
+    let indiceRazon = 0;
+
+    function siguienteRazon() {
+        const box = document.getElementById('textoRazon');
+
+        anime({
+            targets: box,
+            opacity: [1, 0],
+            translateY: [0, -8],
+            duration: 180,
+            easing: 'easeInQuad',
+            complete: function() {
+                box.textContent = razones[indiceRazon];
+                indiceRazon = (indiceRazon + 1) % razones.length;
+
+                anime({
+                    targets: box,
+                    opacity: [0, 1],
+                    translateY: [8, 0],
+                    duration: 250,
+                    easing: 'easeOutQuad'
+                });
+            }
+        });
+    }
+
+    /* Generador de Universo Dinámico (Estrellas 3D + Fugaces) */
+    function crearUniverso() {
+        const container = document.getElementById('starsContainer');
+        const numEstrellas = 80;
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 0; i < numEstrellas; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+
+            // Clasificación por capas (efecto 3D profundidad)
+            const randomType = Math.random();
+            let size, layerClass, duration;
+
+            if (randomType < 0.5) {
+                size = Math.random() * 1.5 + 1;
+                layerClass = 'layer-back';
+                duration = Math.random() * 15 + 20; // 20s a 35s
+            } else if (randomType < 0.85) {
+                size = Math.random() * 2 + 1.8;
+                layerClass = 'layer-mid';
+                duration = Math.random() * 10 + 12; // 12s a 22s
+            } else {
+                size = Math.random() * 2.5 + 2.5;
+                layerClass = 'layer-front';
+                duration = Math.random() * 6 + 7;   // 7s a 13s
+            }
+
+            star.classList.add(layerClass);
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100 + 100}vh`;
+
+            star.style.animationDuration = `${duration}s`;
+            star.style.animationDelay = `${Math.random() * 10}s`;
+
+            const colores = ['#ffffff', '#60a5fa', '#38bdf8', '#bae6fd', '#e0f2fe', '#c084fc'];
+            star.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+
+            fragment.appendChild(star);
+        }
+
+        // Agregar 2 estrellas fugaces dinámicas
+        for (let s = 0; s < 2; s++) {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.top = `${Math.random() * 40}%`;
+            shootingStar.style.left = `${Math.random() * 50}%`;
+            shootingStar.style.animationDelay = `${Math.random() * 6 + s * 4}s`;
+            fragment.appendChild(shootingStar);
+        }
+
+        container.appendChild(fragment);
+    }
+
+    function cambiarPantalla(idPantallaDestino) {
+        const pantallas = document.querySelectorAll('.card, .screen');
+        pantallas.forEach(p => p.classList.add('oculto'));
+
+        const destino = document.getElementById(idPantallaDestino);
+        destino.classList.remove('oculto');
+        window.scrollTo(0, 0);
+
+        anime({
+            targets: destino,
+            translateY: [15, 0],
+            opacity: [0, 1],
+            easing: 'easeOutCubic',
+            duration: 250
+        });
+    }
+
+    function abrirModalPin() {
+        document.getElementById('pinInput').value = '';
+        document.getElementById('pinError').style.display = 'none';
+
+        const modalOverlay = document.getElementById('modalPin');
+        modalOverlay.classList.remove('oculto');
+
+        anime({
+            targets: '#modalBoxContent',
+            scale: [0.85, 1],
+            opacity: [0, 1],
+            easing: 'easeOutCubic',
+            duration: 200
+        });
+
+        setTimeout(() => document.getElementById('pinInput').focus(), 100);
+    }
+
+    function cerrarModalPin() {
+        document.getElementById('modalPin').classList.add('oculto');
+    }
+
+    function validarPin() {
+        const pinIngresado = document.getElementById('pinInput').value.trim();
+        if (pinIngresado === PIN_VALIDO_1 || pinIngresado === PIN_VALIDO_2 || pinIngresado === PIN_VALIDO_3) {
+            cerrarModalPin();
+            cambiarPantalla('pantallaSecreta');
+        } else {
+            document.getElementById('pinError').style.display = 'block';
+
+            anime({
+                targets: '#modalBoxContent',
+                translateX: [-6, 6, -4, 4, 0],
+                easing: 'easeInOutQuad',
+                duration: 250
+            });
+        }
+    }
+
+    window.onload = function() {
+        crearUniverso();
+    };
+</script>
+</body>
+</html>
