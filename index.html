@@ -342,16 +342,28 @@
         .video-card {
             background: linear-gradient(145deg, #e0f2fe, #dbeafe);
             border-radius: 18px;
-            padding: 8px;
+            padding: 10px;
             box-shadow: 0 8px 20px rgba(14, 165, 233, 0.15), 0 2px 6px rgba(0,0,0,0.05);
             border: 2px solid #0ea5e9;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            box-sizing: border-box;
         }
 
         .video-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(14, 165, 233, 0.25);
+        }
+
+        .video-titulo {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #0f2a5f;
+            margin-bottom: 8px;
+            text-align: left;
         }
 
         .video-container {
@@ -363,6 +375,7 @@
             border-radius: 12px;
             background: #020617;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            flex-grow: 1;
         }
 
         .video-container iframe {
@@ -372,6 +385,39 @@
             width: 100%;
             height: 100%;
             border: 0;
+        }
+
+        .tiktok-link-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a, #0284c7);
+            color: #ffffff;
+            text-decoration: none;
+            gap: 8px;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: background 0.3s ease;
+        }
+
+        .tiktok-link-card:hover {
+            background: linear-gradient(135deg, #1e293b, #0369a1);
+        }
+
+        .tiktok-badge {
+            background: #ff0050;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(255, 0, 80, 0.4);
         }
 
         /* RAZONES PARA CELEBRAR */
@@ -673,27 +719,20 @@
 
     <div class="video-grid">
 
-        <!-- Video 1 -->
-        <!-- Video 1 -->
+        <!-- Video 1: TikTok que abre en nueva pestaña -->
         <div class="video-card">
             <div class="video-titulo">🎬 TikTok</div>
             <div class="video-container">
-                <blockquote
-                        class="tiktok-embed"
-                        cite="https://vt.tiktok.com/ZSgpqL9yY/"
-                        data-video-id="ZSgpqL9yY"
-                        style="max-width: 605px; min-width: 325px;">
-                    <section>
-                        <a target="_blank" href="https://vt.tiktok.com/ZSgpqL9yY/">Ver en TikTok</a>
-                    </section>
-                </blockquote>
-                <script async src="https://www.tiktok.com/embed.js"></script>
+                <a href="https://vt.tiktok.com/ZSgpqL9yY/" target="_blank" rel="noopener noreferrer" class="tiktok-link-card">
+                    <span class="tiktok-badge">▶ Ver en TikTok</span>
+                    <span style="font-size: 0.85rem; color: #e0f2fe; text-align: center;">Haz clic para abrir el video</span>
+                </a>
             </div>
         </div>
 
         <!-- Video 2 -->
         <div class="video-card">
-            <div class="video-titulo">🎬 Minuto:  <strong >1:54 </strong ></div>
+            <div class="video-titulo">🎬 Minuto: <strong>1:54</strong></div>
             <div class="video-container">
                 <iframe
                         src="https://www.youtube-nocookie.com/embed/Lywi5uUfCZ8"
@@ -707,7 +746,7 @@
 
         <!-- Video 3 -->
         <div class="video-card">
-            <div class="video-titulo">🎬 Minuto:  <strong >0:42</strong ></div>
+            <div class="video-titulo">🎬 Minuto: <strong>0:42</strong></div>
             <div class="video-container">
                 <iframe
                         src="https://www.youtube-nocookie.com/embed/dVbA2tA4ViE"
@@ -721,7 +760,7 @@
 
         <!-- Video 4 -->
         <div class="video-card">
-            <div class="video-titulo">🎬 Minuto:  <strong >compleetooo ajajaja </strong ></div>
+            <div class="video-titulo">🎬 Minuto: <strong>compleetooo ajajaja</strong></div>
             <div class="video-container">
                 <iframe
                         src="https://www.youtube-nocookie.com/embed/MXXiyfwANCs"
@@ -741,7 +780,7 @@
     </div>
 
     <button class="btn-razon-custom" onclick="siguienteRazon()">
-         Ver otra razón 💫
+        Ver otra razón 💫
     </button>
 
     <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
@@ -819,140 +858,38 @@
         "Porque me parece maravilloso que, entre millones de personas, exista alguien capaz de ver el mundo con tus ojos y convertir lo que siente en algo tan bonito como el arte 🎨🪐",
         "Porque cada vez que conozco un poquito más de ti, descubro nuevas razones para admirar la mujer que eres 🌷💗",
         "Porque mereces que la vida te sorprenda con cosas tan bonitas como las que tú, sin darte cuenta, le regalas a los demás🌻🎁✨",
-        "Porque ojalá pudieras verte alguna vez a través de mis ojos y descubrir todas esas cosas bonitas que quizá tú todavía no alcanzas a reconocer en ti 🪞🌸✨",
-        "Porque no necesitas tener todos los días resueltos ni saber exactamente hacia dónde vas para seguir siendo una mujer digna de admiración y de cosas bonitas 🌦️🌻💙",
-        "Porque me parece precioso que puedas transformar tus sentimientos en colores, tus pensamientos en dibujos y tus sueños en algo que otras personas también pueden admirar 🎨💭💗",
-        "Porque si los recuerdos tuvieran forma, muchos de los momentos bonitos que compartimos tendrían la silueta de una sonrisa tuya y estarían pintados con tus colores favoritos 🖼️🦋💙",
-        "Porque deseo que nunca pierdas esa curiosidad que te hace descubrir cosas nuevas, hacer preguntas inesperadas y encontrar motivos para seguir aqui 🌎🔎✨",
-        "Porque no todas las obras maestras cuelgan de las paredes; algunas caminan por ahí, dicen mensadas JAJAJA, se manchan las manos de pintura y ni siquiera saben lo especiales que son(es Jael) 🎨🖼️💗",
-        "Porque tienes derecho a equivocarte, a cambiar de opinión, a descansar y a volver a empezar, sin que ninguna de esas cosas le quite valor a la persona maravillosa que eres 🌱🧸💙",
-        "Porque si pudiera regalarte algo que no se pudiera envolver, te regalaría la oportunidad de verte con un poquito más de cariño y reconocer todas las razones por las que mereces sentirte orgullosa de ti misma 🎁🌷✨",
-        "Porque si la vida fuera un libro, tú serías ese personaje que aparece en una página inesperada y termina convirtiéndose en una de mis partes favoritas de toda la historia 📖🎨💙",
-        "Porque espero que algún día puedas cumplir esos sueños que todavía guardas en silencio y mirar hacia atrás con una sonrisa al descubrir todo lo que fuiste capaz de construir 🌠🌻💙",
-        "Porque dentro de ti existen tantas versiones hermosas: la mujer que sueña, la que crea, la que aprende, la que se equivoca y la que encuentra fuerzas para continuar 🦋💙🌻",
-        "Porque si pudiera convertir todos los buenos deseos que tengo para ti en pequeñas estrellas, te regalaría un cielo entero para que nunca te faltaran razones para mirar hacia arriba y seguir⭐",
-        "Porque el mundo está lleno de cosas que brillan, pero pocas tienen la capacidad de hacer que me detenga, observe con atención y descubra algo nuevo cada vez que vuelvo a mirarlas; tú eres una de esas maravillas 🌠🖼️💙",
-        "Porque si algún día llegas a olvidar lo lejos que has llegado, ojalá encuentres en tus propios recuerdos las pruebas de todo lo que has aprendido, superado y creado🎨✨",
-        "Porque entre todas las casualidades que pudieron ocurrir en este mundo tan enorme, me parece una de las más bonitas haber tenido la oportunidad de conocerte a pesar de que hay miles de Km separandonos🌷",
-        "Porque no necesitas ser perfecta, extraordinaria todos los días ni convertirte en alguien diferente; ser tú, con tus colores, tus sueños y tu manera de mirar el mundo, ya es una razón preciosa para celebrar tu existencia 🎨💙🦋"
+        "Porque ojalá pudieras verte alguna vez a través de mis ojos y descubrir todas esas cosas bonitas que quizá tú todavía no alcanzas a reconocer en ti 🪞🌸✨"
     ];
 
     let indiceRazon = 0;
 
-    function siguienteRazon() {
-        const box = document.getElementById('textoRazon');
-
-        anime({
-            targets: box,
-            opacity: [1, 0],
-            translateY: [0, -8],
-            duration: 180,
-            easing: 'easeInQuad',
-            complete: function() {
-                box.textContent = razones[indiceRazon];
-                indiceRazon = (indiceRazon + 1) % razones.length;
-
-                anime({
-                    targets: box,
-                    opacity: [0, 1],
-                    translateY: [8, 0],
-                    duration: 250,
-                    easing: 'easeOutQuad'
-                });
-            }
-        });
-    }
-
-    /* Generador de Universo Dinámico (Estrellas 3D + Fugaces) */
-    function crearUniverso() {
-        const container = document.getElementById('starsContainer');
-        const numEstrellas = 80;
-        const fragment = document.createDocumentFragment();
-
-        for (let i = 0; i < numEstrellas; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-
-            // Clasificación por capas (efecto 3D profundidad)
-            const randomType = Math.random();
-            let size, layerClass, duration;
-
-            if (randomType < 0.5) {
-                size = Math.random() * 1.5 + 1;
-                layerClass = 'layer-back';
-                duration = Math.random() * 15 + 20; // 20s a 35s
-            } else if (randomType < 0.85) {
-                size = Math.random() * 2 + 1.8;
-                layerClass = 'layer-mid';
-                duration = Math.random() * 10 + 12; // 12s a 22s
-            } else {
-                size = Math.random() * 2.5 + 2.5;
-                layerClass = 'layer-front';
-                duration = Math.random() * 6 + 7;   // 7s a 13s
-            }
-
-            star.classList.add(layerClass);
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 100 + 100}vh`;
-
-            star.style.animationDuration = `${duration}s`;
-            star.style.animationDelay = `${Math.random() * 10}s`;
-
-            const colores = ['#ffffff', '#60a5fa', '#38bdf8', '#bae6fd', '#e0f2fe', '#c084fc'];
-            star.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
-
-            fragment.appendChild(star);
+    function cambiarPantalla(idPantalla) {
+        document.querySelectorAll('.card, .screen').forEach(el => el.classList.add('oculto'));
+        const pantallaDestino = document.getElementById(idPantalla);
+        if (pantallaDestino) {
+            pantallaDestino.classList.remove('oculto');
+            anime({
+                targets: pantallaDestino,
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 500,
+                easing: 'easeOutQuad'
+            });
         }
-
-        // Agregar 2 estrellas fugaces dinámicas
-        for (let s = 0; s < 2; s++) {
-            const shootingStar = document.createElement('div');
-            shootingStar.className = 'shooting-star';
-            shootingStar.style.top = `${Math.random() * 40}%`;
-            shootingStar.style.left = `${Math.random() * 50}%`;
-            shootingStar.style.animationDelay = `${Math.random() * 6 + s * 4}s`;
-            fragment.appendChild(shootingStar);
-        }
-
-        container.appendChild(fragment);
-    }
-
-    function cambiarPantalla(idPantallaDestino) {
-        const pantallas = document.querySelectorAll('.card, .screen');
-        pantallas.forEach(p => p.classList.add('oculto'));
-
-        const destino = document.getElementById(idPantallaDestino);
-        destino.classList.remove('oculto');
-        window.scrollTo(0, 0);
-
-        anime({
-            targets: destino,
-            translateY: [15, 0],
-            opacity: [0, 1],
-            easing: 'easeOutCubic',
-            duration: 250
-        });
     }
 
     function abrirModalPin() {
+        const modal = document.getElementById('modalPin');
+        modal.classList.remove('oculto');
         document.getElementById('pinInput').value = '';
         document.getElementById('pinError').style.display = 'none';
-
-        const modalOverlay = document.getElementById('modalPin');
-        modalOverlay.classList.remove('oculto');
-
         anime({
             targets: '#modalBoxContent',
-            scale: [0.85, 1],
+            scale: [0.8, 1],
             opacity: [0, 1],
-            easing: 'easeOutCubic',
-            duration: 200
+            duration: 350,
+            easing: 'easeOutBack'
         });
-
-        setTimeout(() => document.getElementById('pinInput').focus(), 100);
     }
 
     function cerrarModalPin() {
@@ -960,25 +897,70 @@
     }
 
     function validarPin() {
-        const pinIngresado = document.getElementById('pinInput').value.trim();
-        if (pinIngresado === PIN_VALIDO_1 || pinIngresado === PIN_VALIDO_2 || pinIngresado === PIN_VALIDO_3) {
+        const input = document.getElementById('pinInput').value.trim();
+        if (input === PIN_VALIDO_1 || input === PIN_VALIDO_2 || input === PIN_VALIDO_3) {
             cerrarModalPin();
             cambiarPantalla('pantallaSecreta');
         } else {
-            document.getElementById('pinError').style.display = 'block';
-
+            const errorEl = document.getElementById('pinError');
+            errorEl.style.display = 'block';
             anime({
                 targets: '#modalBoxContent',
-                translateX: [-6, 6, -4, 4, 0],
-                easing: 'easeInOutQuad',
-                duration: 250
+                translateX: [-10, 10, -8, 8, -4, 4, 0],
+                duration: 400,
+                easing: 'easeInOutSine'
             });
         }
     }
 
-    window.onload = function() {
-        crearUniverso();
-    };
+    function siguienteRazon() {
+        const box = document.getElementById('textoRazon');
+        anime({
+            targets: box,
+            opacity: 0,
+            translateY: -10,
+            duration: 200,
+            easing: 'easeInQuad',
+            complete: function() {
+                box.textContent = razones[indiceRazon];
+                indiceRazon = (indiceRazon + 1) % razones.length;
+                anime({
+                    targets: box,
+                    opacity: 1,
+                    translateY: [10, 0],
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
+            }
+        });
+    }
+
+    // Generador de estrellas animadas
+    function crearEstrellas() {
+        const container = document.getElementById('starsContainer');
+        const numEstrellas = 45;
+
+        for (let i = 0; i < numEstrellas; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+
+            const layer = Math.random();
+            if (layer < 0.5) star.classList.add('layer-back');
+            else if (layer < 0.85) star.classList.add('layer-mid');
+            else star.classList.add('layer-front');
+
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDelay = `${Math.random() * 10}s`;
+
+            container.appendChild(star);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', crearEstrellas);
 </script>
 </body>
 </html>
