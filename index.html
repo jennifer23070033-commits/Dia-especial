@@ -695,7 +695,7 @@
     <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
 </div>
 
-<!-- OPCIÓN 3: Secreto con PIN -->
+<!-- OPCIÓN 3: Secreto con PIN (Para 2910 y 0426) -->
 <div class="screen screen-carta oculto" id="pantallaSecreta">
     <div class="carta-header">🔓 ¡Lograste descifrar el código! 🤫 🔓</div>
     <div class="carta-img-container">
@@ -709,6 +709,37 @@
 
         Deseo de todo corazón que este nuevo año esté repleto de momentos mágicos juntas, de lienzos en blanco listos para pintar el futuro que soñamos y de razones de sobra para hacerte sonreír. Gracias por abrazar mi alma, por ser mi lugar seguro, eres lo más lindo que me ha pasado,
         mi muchachita bonita. 🌹
+    </div>
+    <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
+</div>
+
+<!-- OPCIÓN 3B: Secreto Especial (Para clave 1304 / 13:4-7) -->
+<div class="screen screen-carta oculto" id="pantallaSecreta2">
+    <div class="carta-header" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <span style="font-size: 1.4rem;">✨</span>
+        <span>1 Corintios 13:4-7</span>
+        <span style="font-size: 1.4rem;">✨</span>
+    </div>
+    <div class="carta-body" style="border-left-color: #0284c7; background: linear-gradient(135deg, #f0fdf4, #e0f2fe);">
+        📖 <strong>El amor todo lo sufre, todo lo cree, todo lo espera, todo lo soporta...</strong><br><br>
+        Si llegaste hasta el final de estas tarjetas, quiero confesarte algo que quizá ya sospechabas: tal vez me gustas un poquito… o quizá más de lo que me atrevo a admitir.
+
+        ¿La razón? Creo que podría resumirse en una sola palabra: conexión.
+
+        Porque, entre tantas personas que he conocido a lo largo de mi vida, me resulta increíble que alguien a quien todavía no he podido ver frente a frente, abrazar o siquiera tomar de la mano, sea capaz de provocarme tanta felicidad.
+
+        Es curioso, ¿no? Cómo alguien puede llegar a sentirse tan cerca estando tan lejos. Cómo una conversación, una sonrisa que imagino al otro lado de la pantalla o simplemente saber que existes puede hacer que un día se vuelva un poquito más bonito.
+
+        Y aquí estoy, encontrando cada vez más razones para admirarte, para sonreír cuando pienso en ti y para sentir que, de alguna manera, te has vuelto alguien muy especial para mí.
+
+        Y es que hay algo en ti que simplemente me encanta. No sé si es tu forma de ser, la manera en que nuestras conversaciones fluyen o esa facilidad que tienes para hacerme sonreír, pero poco a poco has conseguido ocupar un rinconcito muy bonito en mis pensamientos.
+        Y creo que eso es lo que más me gusta de todo esto: que haya sido tan espontáneo, tan inesperado y, sobre todo, tan tú.
+
+        No tienes que decir nada especial, ni siquiera encontrar las palabras perfectas. Me basta con que hayas llegado hasta aquí y que ahora sepas que, detrás de todas estas palabras, hay alguien que disfruta muchísimo coincidir contigo.
+
+        Así que sí… tal vez me gustas un poquito. Tal vez más de lo que pensaba. Y quizá, si algún día tenemos la oportunidad de encontrarnos, pueda descubrir cómo se siente decirte todo esto mirándote a los ojos.
+        <br><br>
+        Con cariño, de alguien a quien, aparentemente, le gustas un poquito.✨
     </div>
     <button class="btn btn-primary btn-volver" onclick="cambiarPantalla('pantallaPrincipal')">⬅️ Regresar</button>
 </div>
@@ -817,8 +848,8 @@
 <div class="modal-overlay oculto" id="modalPin">
     <div class="modal-box" id="modalBoxContent">
         <h3 style="color: #0f2a5f; margin-top:0;">🔒 Ingresa el PIN Secreto</h3>
-        <p style="font-size:0.85rem; color:#64748b;">Pista: Año o fecha especial</p>
-        <input type="password" id="pinInput" maxlength="8" placeholder="••••" onkeyup="if(event.key === 'Enter') validarPin()">
+        <p style="font-size:0.85rem; color:#64748b;">Pista: Fecha especial o codigo especial</p>
+        <input type="text" id="pinInput" maxlength="8" placeholder="••••" onkeyup="if(event.key === 'Enter') validarPin()">
         <div class="pin-error" id="pinError">¡PIN Incorrecto! Inténtalo de nuevo.</div>
         <div style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
             <button class="btn btn-primary" onclick="validarPin()" style="padding:10px 20px;">Desbloquear</button>
@@ -828,10 +859,9 @@
 </div>
 
 <script>
-    // Configuración del PIN a 1910 y fechas compatibles
-    const PIN_VALIDO_1 = "2910";
-    const PIN_VALIDO_2 = "0426";
-    const PIN_VALIDO_3 = "1304";
+    // Configuración de PINs
+    const PINS_VENTANA_1 = ["2910", "0426"];
+    const PINS_VENTANA_2 = ["1304", "1347", "13:4-7", "134-7"];
 
     const razones = [
         "Por la forma tan bonita e irrepetible en la que sonríes e iluminas todo a tu alrededor ✨💙",
@@ -842,7 +872,7 @@
         "Porque coincidir contigo en esta vida es de las mejores cosas que me han pasado 🪐💙",
         "Por lo hermosa que te ves con manchitas de pintura mientras creas algo maravilloso 🎨💓",
         "Por todas las veces que dijiste que no podías... y demostraste lo fuerte y maravillosa que eres 🌻💙",
-        "Porque ser simplemente tú, con tu chispa, curiosidad e ideas, me parece algo perfecto en ti ✨",
+        "Porque ser simplemente tú, con thy chispa, curiosidad e ideas, me parece algo perfecto en ti ✨",
         "Por la sensibilidad tan única que tienes para ver colores y belleza donde nadie más los nota 🌈🎨",
         "Por la forma tan linda en la que cuidas y valoras a la gente que quieres 💙🧸",
         "Por lo talentosa y apasionada que eres en todo lo que pintas y sueñas hacer 🎨✨",
@@ -857,8 +887,85 @@
         "Porque si alguien me pidiera explicar cómo se ve la magia sin utilizar esa palabra, probablemente terminaría hablando de ti y de todas esas pequeñas cosas que te hacen tan especial 💙",
         "Porque me parece maravilloso que, entre millones de personas, exista alguien capaz de ver el mundo con tus ojos y convertir lo que siente en algo tan bonito como el arte 🎨🪐",
         "Porque cada vez que conozco un poquito más de ti, descubro nuevas razones para admirar la mujer que eres 🌷💗",
-        "Porque mereces que la vida te sorprenda con cosas tan bonitas como las que tú, sin darte cuenta, le regalas a los demás🌻🎁✨",
-        "Porque ojalá pudieras verte alguna vez a través de mis ojos y descubrir todas esas cosas bonitas que quizá tú todavía no alcanzas a reconocer en ti 🪞🌸✨"
+        "Porque mereces que la vida te sorprenda con cosas tan bonitas como las que tú, sin darte cuenta, le regalas a los demás 🌻🎁✨",
+        "Porque ojalá pudieras verte alguna vez a través de mis ojos y descubrir todas esas cosas bonitas que quizá tú todavía no alcanzas a reconocer en ti 🪞🌸✨",
+        "Porque tu existencia me recuerda que todavía hay personas capaces de hacer que el mundo se sienta un poquito más amable 🌷🦋",
+        "Porque si pudiera regalarte algo que nunca se terminara, elegiría una forma de recordarte todos los días lo maravillosa que eres 🌻🎁✨",
+        "Porque tienes detalles en tu personalidad que probablemente ni tú misma notas, pero que te hacen increíblemente adorable 🧸💕",
+        "Porque tienes una forma muy bonita de ser espontánea, de decir lo que piensas y de dejar salir esa personita tan auténtica que llevas dentro 🦋💙",
+        "Por la ternura y amabilidad con la que tratas a los demás 🌸✨",
+        "Porque siempre encuentras la manera de sacarme una carcajada incluso cuando el día va mal 😂💙",
+        "Por la paz tan inmensa que me da escuchar tu voz 🎧✨",
+        "Por lo bonito que expresas tus emociones cuando te apasiona algo 🎨🔥",
+        "Porque tienes el abrazo perfecto para recargar de buena energía a cualquiera 🫂💙",
+        "Por esa curiosidad tan bonita de querer aprender y descubrir cosas nuevas constantemente 📖💫",
+        "Porque eres el mejor refugio para una buena plática sin filtro ni juzgamientos ☕✨",
+        "Por tu paciencia al escuchar y la atención que le pones a cada pequeño detalle 🌷💙",
+        "Porque haces que los días ordinarios se sientan como recuerdos inolvidables 🗓️✨",
+        "Por la sencillez y dulzura con la que disfrutas de los pequeños placeres de la vida 🍦🎨",
+        "Porque eres una artista no solo cuando pintas, sino en la manera en que vives y sueñas 🖌️🌟",
+        "Por la vibra tan positiva y bonita que transmites desde que llegas a un lugar ✨💙",
+        "Porque tus ojos tienen ese destello de ilusión único cuando algo te emociona 👁️💫",
+        "Por la lealtad e integridad tan firme con la que cuidas a quienes quieres 🛡️🤍",
+        "Porque me encanta cuando te concentras tanto en lo que haces que el tiempo se detiene 🎨⏳",
+        "Por esa valentía con la que le haces frente a las situaciones difíciles 🦁💙",
+        "Porque no necesitas aparentar nada, tu autenticidad es tu mayor atractivo 🌟✨",
+        "Por la forma tan bonita en la que sabes acompañar a alguien en silencio cuando lo necesita 🤫💙",
+        "Porque tienes una memoria increíble para recordar pequeños momentos felices 💭✨",
+        "Por cada mensaje tuyo que me saca una sonrisa instantánea al teléfono 📱💙",
+        "Porque a mitad de camino de esta lista solo puedo reafirmar lo afortunada que soy de tenerte 🎈✨",
+        "Por la delicadeza con la que tratas a tus creaciones artísticas 🎨🕊️",
+        "Porque tus ocurrencias de la nada siempre alegran cualquier conversación 🤪💙",
+        "Por la generosidad de tu corazón cuando alguien requiere tu ayuda 🤲✨",
+        "Porque a tu lado puedo ser yo misma sin miedo a nada 🤍🌿",
+        "Por la emoción contagiosa que pones al celebrar los logros de tus seres queridos 🎉💙",
+        "Because me enseñas a ver el arte y el color en cosas que antes me parecían simples 🌈🖌️",
+        "Por esa combinación divina de fuerza, independencia y ternura 👑💙",
+        "Porque eres esa personita en la que pienso cuando escucho una bonita canción 🎵✨",
+        "Por lo tierna que me resultas  🤔💓",
+        "Porque tienes una capacidad increíble para sanar los días pesados con solo sonreír 🩹💙",
+        "Por tu buen gusto para la estética, los detalles y el diseño ✨",
+        "Porque nunca pierdes esa chispa de niña curiosa que sueña en grande 🎈✨",
+        "Por el respeto y el cariño con el que siempre te expresas de las personas que amas 🏡💙",
+        "Porque eres impredecible en el mejor de los sentidos y siempre me sorprendes 🪄✨",
+        "Por cada anecdota que me cuentas y me hace adorar tu voz 🎙️💙",
+        "Porque tus abrazos adistancia son como volver a un hogar calentito en un día lluvioso 🌧️🏠",
+        "Por la forma en la que defiendes tus ideas con argumentos y pasión 💡💙",
+        "Porque tu sentido del humor es único y hace el match con el mío 😂✨",
+        "Por la empatía tan bonita de ponerte siempre en los zapatos del otro 💗🌿",
+        "Porque cualquier lugar se vuelve mágico si tú estás ahí 🪐✨",
+        "Por cómo cuidas tus proyectos hasta dejarlos perfectos y con tu sello propio 🖌️💙",
+        "Porque eres la prueba viviente de que la bondad y la belleza coexisten en una misma persona 🌷✨",
+        "Por esos momentos donde nos reímos y solo somos nosotres💙",
+        "Porque cada dia aprendo más de ti y  me haces querer ser una mejor versión de mí cada día 📈✨",
+        "Por lo lindo que combinas la madurez con la diversión sin perder tu esencia 🎨💙",
+        "Porque eres mi coincidencia favorita de todo este universo 🌌✨",
+        "Por la calidez con la que recibes a las personas en tu vida ☀️💙",
+        "Porque tienes una mente brillante repleta de ideas increíbles 💡🎨",
+        "Por las pláticas nocturnas que se pasan volando sin que nos demos cuenta 🌙💙",
+        "Por la forma única e inconfundible que tienes de caminar, reír y existir ✨💙",
+        "Porque inspiras creatividad en todos los que te rodeamos 🎨🔥",
+        "Por la calma que transmites cuando todo parece un caos afuera 🌊✨",
+        "Porque eres sumamente dedicada con las metas que te propones 🎯💙",
+        "Por la manera tan linda en la que disfrutas de la música 🎶🎧",
+        "Porque tus gestos de cariño son súper sinceros y se sienten en el alma 💗✨",
+        "Por ser esa persona a la que acudirías sin pensarlo dos veces 🤝💙",
+        "Por la elegancia y sutileza que proyectas en todo lo que haces 🌹✨",
+        "Porque tus consejos siempre nacen desde el cariño y la sabiduría 🧠💙",
+        "Por hacer que incluso la rutina se sienta ligera y bonita ✨🎨",
+        "Porque tu risa es el mejor sonido que puede sonar en una habitación 🎶💙",
+        "Por la dulzura con la que recuerdas los cimpleaños de tus personas favoritas 🗓️✨",
+        "Porque eres de esas personas que dejan una huella imborrable en el corazón 🐾💙",
+        "Por esa mirada limpia y honesta, que aunque no tenga la dicha de ver en persona, sé que es la más bonita👁️✨",
+        "Porque eres luz pura para quienes tenemos la fortuna de tenerte cerca 💡💙",
+        "Por la forma en la que conviertes cualquier conversación en algo interesante 💬✨",
+        "Porque eres extremadamente fuerte aunque a veces dudes de ti misma 🛡️💙",
+        "Por el amor y cariño que dejas en cada detalle que preparas 🎁✨",
+        "Porque tu sola presencia hace que todo encaje perfectamente en mi vida 🧩💙",
+        "Por ser, simplemente, la muchachita más especial y maravillosa de este mundo 🎨🌹✨",
+        "100. Porque si el arte busca expresar lo inexplicable, tú eres la prueba de que lo más hermoso de este mundo ni siquiera necesita explicación 🎨✨💙",
+        "101. Porque aunque esta lista diga 100 razones, la verdad es que cada día a tu lado invento una nueva para quererte y celebrarte más 🎨💙✨",
+        "Has llegado al final… pero todavía hay algo que quiero contarte desde el fondo de mi corazón, creo que ya lo intuyes y si quieres saber o dejarlo pasar...lo dejo en tus manitos y no rebasaré ningun limite tuyo: 13:4-7"
     ];
 
     let indiceRazon = 0;
@@ -898,9 +1005,13 @@
 
     function validarPin() {
         const input = document.getElementById('pinInput').value.trim();
-        if (input === PIN_VALIDO_1 || input === PIN_VALIDO_2 || input === PIN_VALIDO_3) {
+
+        if (PINS_VENTANA_1.includes(input)) {
             cerrarModalPin();
             cambiarPantalla('pantallaSecreta');
+        } else if (PINS_VENTANA_2.includes(input)) {
+            cerrarModalPin();
+            cambiarPantalla('pantallaSecreta2');
         } else {
             const errorEl = document.getElementById('pinError');
             errorEl.style.display = 'block';
